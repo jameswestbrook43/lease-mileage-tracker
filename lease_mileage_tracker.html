@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lease Mileage Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #tracker {
+            font-size: 24px;
+            padding: 20px;
+            border: 2px solid #000;
+            display: inline-block;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lease Mileage Tracker</h1>
+    <div id="tracker">Loading...</div>
+    
+    <script>
+        function updateMileage() {
+            const startDate = new Date('2024-12-17');
+            const today = new Date();
+            const timeDiff = today - startDate;
+            const daysElapsed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const milesPerDay = 15000 / 365;
+            const maxMilesAllowed = (daysElapsed * milesPerDay).toFixed(2);
+
+            document.getElementById('tracker').innerHTML = `
+                <strong>Date:</strong> ${today.toDateString()} <br>
+                <strong>Days Elapsed:</strong> ${daysElapsed} <br>
+                <strong>Max Miles Allowed:</strong> ${maxMilesAllowed} miles
+            `;
+        }
+        
+        updateMileage();
+        setInterval(updateMileage, 60000); // Update every minute
+    </script>
+</body>
+</html>
